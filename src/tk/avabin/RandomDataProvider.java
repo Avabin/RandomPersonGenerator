@@ -14,6 +14,10 @@ abstract class RandomDataProvider {
         rand = new Random();
     }
 
+    /**
+     * @param arrayList List or string we will choose from.
+     * @return One string from given ArrayList of strings
+     */
     String randomChoiceFromArray(ArrayList<String> arrayList) {
         return arrayList.get(rand.nextInt(arrayList.size()));
     }
