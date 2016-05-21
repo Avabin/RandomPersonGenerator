@@ -10,13 +10,13 @@ import java.util.ArrayList;
  * Utility singleton class
  */
 class Utility {
-    private static Utility ourInstance = new Utility();
+    private static final Utility INSTANCE = new Utility();
 
     private Utility() {
     }
 
     static Utility getInstance() {
-        return ourInstance;
+        return INSTANCE;
     }
 
     /**
