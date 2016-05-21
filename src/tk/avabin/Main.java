@@ -5,7 +5,7 @@ public class Main {
         NameGenerator nameGenerator = new NameGenerator(true);
         String name = nameGenerator.getRandomName();
         String lastName = nameGenerator.getRandomLastname();
-        System.out.println(name + " " + lastName);
+        System.out.println(name + lastName);
 
     }
 
