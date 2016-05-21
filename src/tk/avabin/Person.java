@@ -130,7 +130,11 @@ public class Person {
             returnstring += "Third Name: " + third_name + "\n";
         }
 
-        returnstring += "Last Name: " + last_name + "\n" +
+        returnstring += "Last Name: " + last_name + "\n";
+
+        if (gender) returnstring += "Gender: Male \n";
+        else returnstring += "Gender: Female \n";
+        returnstring += "" +
                 "Birthday: " + birthday.toString() + "\n";
 
         if (deathday != null) {
