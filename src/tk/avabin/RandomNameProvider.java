@@ -20,8 +20,8 @@ class RandomNameProvider extends RandomDataProvider {
         } else {
             source_filename_names = "female_firstnames.txt";
         }
-        namesArray = Util.fetchFromFile(res_dir + source_filename_names);
-        lastNamesArray = Util.fetchFromFile(res_dir + "lastnames.txt");
+        namesArray = Utility.getInstance().fetchFromFile(res_dir + source_filename_names);
+        lastNamesArray = Utility.getInstance().fetchFromFile(res_dir + "lastnames.txt");
 
     }
 
@@ -31,7 +31,7 @@ class RandomNameProvider extends RandomDataProvider {
      * @return random name from file
      */
     String nextName() {
-        return randomChoiceFromArray(namesArray);
+        return randomChoiceFromArray(namesArray).replace("  ", "");
     }
 
     /**
@@ -39,7 +39,7 @@ class RandomNameProvider extends RandomDataProvider {
      * @return random lastname from file
      */
     String nextLastname() {
-        return randomChoiceFromArray(lastNamesArray);
+        return randomChoiceFromArray(lastNamesArray).replace("  ", "");
     }
 
 }

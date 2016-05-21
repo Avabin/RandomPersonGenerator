@@ -1,15 +1,23 @@
 package tk.avabin;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
- * Util class for storing static methods.
+ * Utility singleton class
  */
-class Util {
+class Utility {
+    private static Utility ourInstance = new Utility();
+
+    private Utility() {
+    }
+
+    static Utility getInstance() {
+        return ourInstance;
+    }
 
     /**
      * Makes ArrayList with a string for each line in given file.
@@ -17,11 +25,13 @@ class Util {
      * @param filepath path to the sourcefile
      * @return string type ArrayList with all the lines in the file
      */
-    static ArrayList<String> fetchFromFile(String filepath) {
+    ArrayList<String> fetchFromFile(String filepath) {
+        InputStream in = getClass().getClassLoader().getResourceAsStream(filepath);
+        BufferedReader reader;
         String line;
         ArrayList<String> names = new ArrayList<>();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(filepath)));
+            reader = new BufferedReader(new InputStreamReader(in));
             while ((line = reader.readLine()) != null) {
                 names.add(line);
             }

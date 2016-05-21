@@ -107,7 +107,13 @@ class Person {
 
         first_name = nameProvider.nextName();
         second_name = nameProvider.nextName();
+        while (second_name.equals(first_name)) {
+            second_name = nameProvider.nextName();
+        }
         third_name = nameProvider.nextName();
+        while (third_name.equals(first_name) || third_name.equals(second_name)) {
+            third_name = nameProvider.nextName();
+        }
         last_name = nameProvider.nextLastname();
         emailProvider = new RandomEmailProvider(first_name, last_name);
 

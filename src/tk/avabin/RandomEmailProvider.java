@@ -2,6 +2,7 @@ package tk.avabin;
 
 import java.util.ArrayList;
 
+
 /**
  * Class for random email generating.
  */
@@ -17,9 +18,9 @@ class RandomEmailProvider extends RandomDataProvider {
      * @param lastname second part of email address
      */
     RandomEmailProvider(String name, String lastname) {
-        this.name = name.toLowerCase().replace("  ", "");
+        this.name = name.toLowerCase();
         this.lastname = lastname.toLowerCase();
-        email_tails = Util.fetchFromFile(res_dir + "email.txt");
+        email_tails = Utility.getInstance().fetchFromFile(res_dir + "email.txt");
     }
 
     /**

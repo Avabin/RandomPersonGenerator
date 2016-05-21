@@ -1,6 +1,5 @@
 package tk.avabin;
 
-
 class Main {
     private Main() {
         Person person = new Person().nextPerson();

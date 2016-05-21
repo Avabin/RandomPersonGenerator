@@ -1,6 +1,5 @@
 package tk.avabin;
 
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -9,7 +8,7 @@ import java.util.Random;
  */
 abstract class RandomDataProvider {
     final Random rand;
-    final String res_dir = Paths.get(".").toAbsolutePath().normalize().toString() + "/res/";
+    final String res_dir = "tk/avabin/res/";
 
     RandomDataProvider() {
         rand = new Random();
