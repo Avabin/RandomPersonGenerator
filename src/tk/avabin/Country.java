@@ -15,7 +15,7 @@ public class Country {
      */
     public Country() {}
 
-    public Country getRandomCountry() {
+    public Country nextCountry() {
         Random rand = new Random();
         String[] locales = Locale.getISOCountries();
         countryLocale = new Locale("", locales[rand.nextInt(locales.length)]);

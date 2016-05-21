@@ -16,7 +16,7 @@ public class Person {
     private Date deathday;
     private Country country;
     private String email;
-    private int phone_number;
+    private String phone_number;
 
     /**
      * Class constructor
@@ -33,7 +33,7 @@ public class Person {
      */
     public Person(String first_name, String second_name, String third_name, String last_name,
                   Date birthday, boolean gender, Date  deathday, Country country,
-                  String email, int phone_number) {
+                  String email, String phone_number) {
 
         this.first_name = first_name;
         this.second_name = second_name;
@@ -61,7 +61,7 @@ public class Person {
     public Person(String first_name, String last_name,
                   Date birthday, boolean gender, String city,
                   Country country, String postal_code,
-                  String email, int phone_number) {
+                  String email, String phone_number) {
 
         this.first_name = first_name;
         this.last_name = last_name;
@@ -80,22 +80,66 @@ public class Person {
     public Person() {
     }
 
-    public Person getRandomPerson() {
-        int phone_offset = 10000000;
+    /**
+     * Random person generating.
+     *
+     * @return person with totally random credencials,
+     * no matter if you set something before with constructors or not.
+     */
+    public Person nextPerson() {
+        RandomEmailProvider emailProvider;
+        RandomNameProvider nameProvider;
+        RandomDateProvider dateProvider;
+        RandomPhoneNumberProvider phoneNumberProvider;
         Country c = new Country();
         Random random = new Random();
+        dateProvider = new RandomDateProvider(new Date(System.currentTimeMillis() - (100L * 365 * 24 * 60 * 60 * 1000)),
+                new Date(System.currentTimeMillis()));
+        phoneNumberProvider = new RandomPhoneNumberProvider();
+
+
         gender = random.nextBoolean();
-        NameGenerator nameGenerator = new NameGenerator(gender);
-        first_name = nameGenerator.getRandomName();
-        second_name = nameGenerator.getRandomName();
-        third_name = nameGenerator.getRandomName();
-        last_name = nameGenerator.getRandomLastname();
-        // birthday = TODO
-        // deathday = TODO
-        country = c.getRandomCountry();
-        //email = TODO
-        phone_number = random.nextInt(999999999 - phone_offset) + phone_offset;
+        nameProvider = new RandomNameProvider(gender);
+
+        first_name = nameProvider.nextName();
+        second_name = nameProvider.nextName();
+        third_name = nameProvider.nextName();
+        last_name = nameProvider.nextLastname();
+        emailProvider = new RandomEmailProvider(first_name, last_name);
+
+        birthday = dateProvider.nextDate();
+        dateProvider.setMin(birthday);
+        deathday = dateProvider.nextDate();
+
+        country = c.nextCountry();
+        email = emailProvider.nextEmail();
+        phone_number = phoneNumberProvider.nextPhoneNumber();
         return this;
+    }
+
+    @Override
+    public String toString() {
+        String returnstring = "";
+
+        returnstring += "First Name: " + first_name + "\n";
+
+        if (second_name != null) {
+            returnstring += "Second Name: " + second_name + "\n";
+        }
+        if (third_name != null) {
+            returnstring += "Third Name: " + third_name + "\n";
+        }
+
+        returnstring += "Last Name: " + last_name + "\n" +
+                "Birthday: " + birthday.toString() + "\n";
+
+        if (deathday != null) {
+            returnstring += "Death Day: " + deathday.toString() + "\n";
+        }
+
+        returnstring += "Country: " + country.getCountryName() + "\n" + "Email: " + email + "\n" + "Phone number: " + phone_number;
+
+        return returnstring;
     }
 
 }
