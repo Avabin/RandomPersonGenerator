@@ -1,12 +1,15 @@
 package tk.avabin;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by Avabin on 21.05.2016.
+ * Class for random name generator
  */
 public class NameGenerator {
     private ArrayList<String> namesArray;
@@ -46,10 +49,19 @@ public class NameGenerator {
         return names;
     }
 
+    /**
+     * Random name choice from file
+     *
+     * @return random name from file
+     */
     public String getRandomName() {
         return this.namesArray.get(rand.nextInt(namesArray.size()));
     }
 
+    /**
+     * Random lastname choice from file
+     * @return random lastname from file
+     */
     public String getRandomLastname() {
         return this.lastNamesArray.get(rand.nextInt(lastNamesArray.size()));
     }

@@ -1,6 +1,7 @@
 package tk.avabin;
 
 import java.util.Date;
+import java.util.Random;
 
 /**
  * Person object
@@ -77,7 +78,24 @@ public class Person {
      * Used for random Person generating
      */
     public Person() {
+    }
 
+    public Person getRandomPerson() {
+        int phone_offset = 10000000;
+        Country c = new Country();
+        Random random = new Random();
+        gender = random.nextBoolean();
+        NameGenerator nameGenerator = new NameGenerator(gender);
+        first_name = nameGenerator.getRandomName();
+        second_name = nameGenerator.getRandomName();
+        third_name = nameGenerator.getRandomName();
+        last_name = nameGenerator.getRandomLastname();
+        // birthday = TODO
+        // deathday = TODO
+        country = c.getRandomCountry();
+        //email = TODO
+        phone_number = random.nextInt(999999999 - phone_offset) + phone_offset;
+        return this;
     }
 
 }
