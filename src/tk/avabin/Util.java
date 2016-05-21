@@ -7,10 +7,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by Avabin on 21.05.2016.
+ * Util class for storing static methods.
  */
-public class Util {
-    public static ArrayList<String> fetchFromFile(String filepath) {
+class Util {
+
+    /**
+     * Makes ArrayList with a string for each line in given file.
+     *
+     * @param filepath path to the sourcefile
+     * @return string type ArrayList with all the lines in the file
+     */
+    static ArrayList<String> fetchFromFile(String filepath) {
         String line;
         ArrayList<String> names = new ArrayList<>();
         try {

@@ -5,9 +5,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
- * Created by Avabin on 21.05.2016.
+ * Class for random date generating.
  */
-public class RandomDateProvider extends RandomDataProvider {
+class RandomDateProvider extends RandomDataProvider {
     private Date min;
     private Date max;
 
@@ -16,12 +16,17 @@ public class RandomDateProvider extends RandomDataProvider {
      * @param min Min. bound of date to generate.
      * @param max Max. bound of date to generate.
      */
-    public RandomDateProvider(Date min, Date max) {
+    RandomDateProvider(Date min, Date max) {
         this.min = min;
         this.max = max;
     }
 
-    public Date nextDate() {
+    /**
+     * BUG: Hours of generated dates will be the same, and will be same as UTC - 1h
+     *
+     * @return random date (except hours, look above)
+     */
+    Date nextDate() {
         long MILLIS_PER_DAY = 1000 * 60 * 60 * 24;
         GregorianCalendar s = new GregorianCalendar();
         s.setTimeInMillis(min.getTime());
@@ -39,10 +44,11 @@ public class RandomDateProvider extends RandomDataProvider {
         return cal.getTime();
     }
 
-    public void setMin(Date min) {
+    void setMin(Date min) {
         this.min = min;
     }
 
+    @SuppressWarnings("unused")
     public void setMax(Date max) {
         this.max = max;
     }

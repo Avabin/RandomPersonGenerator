@@ -1,12 +1,15 @@
 package tk.avabin;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
 /**
  * Person object
  */
-public class Person {
+@SuppressWarnings("unused")
+class Person {
     private String first_name;
     private String second_name;
     private String third_name;
@@ -58,6 +61,7 @@ public class Person {
      * @param email         Email address of the Person.
      * @param phone_number  Actual phone_number of the Person
      */
+    @SuppressWarnings("unused")
     public Person(String first_name, String last_name,
                   Date birthday, boolean gender, String city,
                   Country country, String postal_code,
@@ -77,16 +81,16 @@ public class Person {
      * Class constructor
      * Used for random Person generating
      */
-    public Person() {
+    Person() {
     }
 
     /**
      * Random person generating.
      *
-     * @return person with totally random credencials,
+     * @return person with totally random credentials,
      * no matter if you set something before with constructors or not.
      */
-    public Person nextPerson() {
+    Person nextPerson() {
         RandomEmailProvider emailProvider;
         RandomNameProvider nameProvider;
         RandomDateProvider dateProvider;
@@ -109,7 +113,7 @@ public class Person {
 
         birthday = dateProvider.nextDate();
         dateProvider.setMin(birthday);
-        deathday = dateProvider.nextDate();
+        if (random.nextBoolean()) deathday = dateProvider.nextDate();
 
         country = c.nextCountry();
         email = emailProvider.nextEmail();
@@ -119,6 +123,7 @@ public class Person {
 
     @Override
     public String toString() {
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
         String returnstring = "";
 
         returnstring += "First Name: " + first_name + "\n";
@@ -135,10 +140,10 @@ public class Person {
         if (gender) returnstring += "Gender: Male \n";
         else returnstring += "Gender: Female \n";
         returnstring += "" +
-                "Birthday: " + birthday.toString() + "\n";
+                "Birthday: " + df.format(birthday) + "\n";
 
         if (deathday != null) {
-            returnstring += "Death Day: " + deathday.toString() + "\n";
+            returnstring += "Death Day: " + df.format(deathday) + "\n";
         }
 
         returnstring += "Country: " + country.getCountryName() + "\n" + "Email: " + email + "\n" + "Phone number: " + phone_number;

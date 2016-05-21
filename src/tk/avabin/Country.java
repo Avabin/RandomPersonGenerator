@@ -4,26 +4,31 @@ import java.util.Locale;
 import java.util.Random;
 
 /**
- * Created by Avabin on 21.05.2016.
+ * Class Country.
  */
-public class Country {
+class Country {
     private String countryName;
-    private Locale countryLocale;
 
     /**
-     *
+     * Default class constructor
      */
-    public Country() {}
+    Country() {
+    }
 
-    public Country nextCountry() {
+    /**
+     * Generating random Country class.
+     *
+     * @return generated class.
+     */
+    Country nextCountry() {
         Random rand = new Random();
         String[] locales = Locale.getISOCountries();
-        countryLocale = new Locale("", locales[rand.nextInt(locales.length)]);
+        Locale countryLocale = new Locale("", locales[rand.nextInt(locales.length)]);
         countryName = countryLocale.getDisplayName();
         return this;
     }
 
-    public String getCountryName(){
+    String getCountryName() {
         return countryName;
     }
 }

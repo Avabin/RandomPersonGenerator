@@ -1,26 +1,21 @@
 package tk.avabin;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Class for random name generator
  */
-public class RandomNameProvider extends RandomDataProvider {
-    private ArrayList<String> namesArray;
-    private ArrayList<String> lastNamesArray;
-    private boolean gender;
-    private String source_filename_names;
-
-    private Random rand = new Random();
+class RandomNameProvider extends RandomDataProvider {
+    private final ArrayList<String> namesArray;
+    private final ArrayList<String> lastNamesArray;
 
     /**
      * Class constructor
      * @param gender    Gender for name generating. True if male, false if female.
      */
-    public RandomNameProvider(boolean gender) {
-        this.gender = gender;
-        if (this.gender) {
+    RandomNameProvider(boolean gender) {
+        String source_filename_names;
+        if (gender) {
             source_filename_names = "male_firstnames.txt";
         } else {
             source_filename_names = "female_firstnames.txt";
@@ -35,7 +30,7 @@ public class RandomNameProvider extends RandomDataProvider {
      *
      * @return random name from file
      */
-    public String nextName() {
+    String nextName() {
         return randomChoiceFromArray(namesArray);
     }
 
@@ -43,7 +38,7 @@ public class RandomNameProvider extends RandomDataProvider {
      * Random lastname choice from file
      * @return random lastname from file
      */
-    public String nextLastname() {
+    String nextLastname() {
         return randomChoiceFromArray(lastNamesArray);
     }
 

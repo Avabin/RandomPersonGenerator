@@ -3,19 +3,30 @@ package tk.avabin;
 import java.util.ArrayList;
 
 /**
- * Created by Avabin on 21.05.2016.
+ * Class for random email generating.
  */
-public class RandomEmailProvider extends RandomDataProvider {
-    private String name, lastname;
-    private ArrayList<String> email_tails;
+class RandomEmailProvider extends RandomDataProvider {
+    private final String name;
+    private final String lastname;
+    private final ArrayList<String> email_tails;
 
-    public RandomEmailProvider(String name, String lastname) {
+    /**
+     * Class constructor
+     *
+     * @param name     First part of email address
+     * @param lastname second part of email address
+     */
+    RandomEmailProvider(String name, String lastname) {
         this.name = name.toLowerCase().replace("  ", "");
         this.lastname = lastname.toLowerCase();
         email_tails = Util.fetchFromFile(res_dir + "email.txt");
     }
 
-    public String nextEmail() {
+    /**
+     * @return email address with name, lastname, randomly generated two digits and randomly choosed email domain.
+     * Ex. "teddy.novakov56@mail.ru"
+     */
+    String nextEmail() {
         return name + "." + lastname + rand.nextInt(99) + "@" + randomChoiceFromArray(email_tails);
     }
 }

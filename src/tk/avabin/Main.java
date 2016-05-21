@@ -1,7 +1,7 @@
 package tk.avabin;
 
 
-public class Main {
+class Main {
     private Main() {
         Person person = new Person().nextPerson();
         System.out.println(person.toString());

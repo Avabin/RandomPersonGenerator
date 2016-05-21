@@ -5,17 +5,17 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by Avabin on 21.05.2016.
+ * Abstract class for all random data providers
  */
-public abstract class RandomDataProvider {
+abstract class RandomDataProvider {
     final Random rand;
-    String res_dir = Paths.get(".").toAbsolutePath().normalize().toString() + "/res/";
+    final String res_dir = Paths.get(".").toAbsolutePath().normalize().toString() + "/res/";
 
-    protected RandomDataProvider() {
+    RandomDataProvider() {
         rand = new Random();
     }
 
-    public String randomChoiceFromArray(ArrayList<String> arrayList) {
+    String randomChoiceFromArray(ArrayList<String> arrayList) {
         return arrayList.get(rand.nextInt(arrayList.size()));
     }
 }
