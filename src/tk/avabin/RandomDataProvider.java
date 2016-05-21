@@ -9,7 +9,7 @@ import java.util.Random;
  */
 public abstract class RandomDataProvider {
     final Random rand;
-    String res_dir = Paths.get(".").toAbsolutePath().normalize().toString() + "/src/tk/avabin/res/";
+    String res_dir = Paths.get(".").toAbsolutePath().normalize().toString() + "/res/";
 
     protected RandomDataProvider() {
         rand = new Random();
