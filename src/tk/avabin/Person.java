@@ -3,7 +3,6 @@ package tk.avabin;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
 
 /**
  * Person object
@@ -63,8 +62,8 @@ class Person {
      */
     @SuppressWarnings("unused")
     public Person(String first_name, String last_name,
-                  Date birthday, boolean gender, String city,
-                  Country country, String postal_code,
+                  Date birthday, boolean gender,
+                  Country country,
                   String email, String phone_number) {
 
         this.first_name = first_name;
@@ -90,42 +89,7 @@ class Person {
      * @return person with totally random credentials,
      * no matter if you set something before with constructors or not.
      */
-    Person nextPerson() {
-        RandomEmailProvider emailProvider;
-        RandomNameProvider nameProvider;
-        RandomDateProvider dateProvider;
-        RandomPhoneNumberProvider phoneNumberProvider;
-        Country c = new Country();
-        Random random = new Random();
-        dateProvider = new RandomDateProvider(new Date(System.currentTimeMillis() - (100L * 365 * 24 * 60 * 60 * 1000)),
-                new Date(System.currentTimeMillis()));
-        phoneNumberProvider = new RandomPhoneNumberProvider();
 
-
-        gender = random.nextBoolean();
-        nameProvider = new RandomNameProvider(gender);
-
-        first_name = nameProvider.nextName();
-        second_name = nameProvider.nextName();
-        while (second_name.equals(first_name)) {
-            second_name = nameProvider.nextName();
-        }
-        third_name = nameProvider.nextName();
-        while (third_name.equals(first_name) || third_name.equals(second_name)) {
-            third_name = nameProvider.nextName();
-        }
-        last_name = nameProvider.nextLastname();
-        emailProvider = new RandomEmailProvider(first_name, last_name);
-
-        birthday = dateProvider.nextDate();
-        dateProvider.setMin(birthday);
-        if (random.nextBoolean()) deathday = dateProvider.nextDate();
-
-        country = c.nextCountry();
-        email = emailProvider.nextEmail();
-        phone_number = phoneNumberProvider.nextPhoneNumber();
-        return this;
-    }
 
     @Override
     public String toString() {
@@ -157,4 +121,87 @@ class Person {
         return returnstring;
     }
 
+    public String getFirstName() {
+        return first_name;
+    }
+
+    public String getSecondName() {
+        return second_name;
+    }
+
+    public String getThirdName() {
+        return third_name;
+    }
+
+    public String getLastName() {
+        return last_name;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public boolean getGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
+
+    public Date getDeathday() {
+        return deathday;
+    }
+
+    public void setDeathday(Date deathday) {
+        this.deathday = deathday;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phone_number;
+    }
+
+    public boolean isDead() {
+        return deathday != null;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public void setSecond_name(String second_name) {
+        this.second_name = second_name;
+    }
+
+    public void setThird_name(String third_name) {
+        this.third_name = third_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
 }
